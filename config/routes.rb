@@ -7,14 +7,6 @@ Rails.application.routes.draw do
 
   get 'contests/show'
 
-  get 'contest/index'
-
-  get 'contest/submit'
-
-  get 'contest/list'
-
-  get 'contest/show'
-
   resources :samples
 
   # The priority is based upon order of creation: first created -> highest priority.
