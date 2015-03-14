@@ -3,3 +3,10 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 table.user-list { width: 300px; }
+
+table {
+	.center {
+		height: 20px;
+		padding: 4px 12px 4px 12px;
+	}
+}
