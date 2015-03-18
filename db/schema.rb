@@ -11,13 +11,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150309172628) do
+ActiveRecord::Schema.define(version: 20150318161913) do
+
+  create_table "contests", force: :cascade do |t|
+    t.integer  "count"
+    t.datetime "from_date"
+    t.datetime "to_date"
+    t.text     "information"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "records", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "contest_id"
+    t.text     "information"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "samples", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
