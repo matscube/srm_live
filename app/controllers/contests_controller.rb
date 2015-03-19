@@ -9,6 +9,7 @@ class ContestsController < ApplicationController
   end
 
   def list
+    @contests = Contest.all
   end
 
   def show

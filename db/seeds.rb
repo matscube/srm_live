@@ -5,3 +5,10 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+Contest.delete_all
+Contest.create(
+	count: "0",
+	from_date: DateTime.now,
+	to_date: DateTime.now,
+	information: "{}")
