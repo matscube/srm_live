@@ -9,6 +9,22 @@
 Contest.delete_all
 Contest.create(
 	count: "0",
-	from_date: DateTime.now,
-	to_date: DateTime.now,
-	information: "{}")
+	from_date: DateTime.new(2015, 2, 27, 0),
+	to_date: DateTime.new(2015, 3, 4, 24),
+	information: "{}"
+)
+
+Contest.create(
+	count: "1",
+	from_date: DateTime.new(2015, 3, 5, 0),
+	to_date: DateTime.new(2015, 3, 11, 24),
+	information: "{}"
+)
+
+Contest.create(
+	count: "2",
+	from_date: DateTime.new(2015, 3, 12, 0),
+	to_date: DateTime.new(2015, 3, 18, 24),
+	information: "{}"
+)
+
