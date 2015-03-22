@@ -6,26 +6,101 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+# TODO: reset auto_increment by db env
+
 Contest.delete_all
+Contest.connection.execute("delete from sqlite_sequence where name='contests'")
 Contest.create(
-	count: "0",
-	from_date: DateTime.new(2015, 2, 27, 0),
+	count: "1",
+	from_date: DateTime.new(2015, 2, 28, 0),
 	to_date: DateTime.new(2015, 3, 4, 24),
 	information: "{}"
 )
 
 Contest.create(
-	count: "1",
+	count: "2",
 	from_date: DateTime.new(2015, 3, 5, 0),
 	to_date: DateTime.new(2015, 3, 11, 24),
 	information: "{}"
 )
 
 Contest.create(
-	count: "2",
+	count: "3",
 	from_date: DateTime.new(2015, 3, 12, 0),
 	to_date: DateTime.new(2015, 3, 18, 24),
 	information: "{}"
 )
 
 User.delete_all
+User.connection.execute("delete from sqlite_sequence where name='users'")
+User.create(
+	name: "まっちゃん",
+	email: "matscube@gmail.com"
+)
+
+User.create(
+	name: "みいみいぜみ",
+	email: "matscube@gmail.com"
+)
+
+User.create(
+	name: "つくつくぼうし",
+	email: "matscube@gmail.com"
+)
+ 
+User.create(
+	name: "くまぜみ",
+	email: "matscube@gmail.com"
+)
+
+Record.delete_all
+Record.connection.execute("delete from sqlite_sequence where name='records'")
+json = {
+	result: [
+		{ time: 3 * 60 * 100 + 40 * 100 + 55, DNF: false },
+		{ time: 3 * 20 * 100 + 40 * 100 + 55, DNF: true },
+		{	time: 1 * 60 * 100 + 20 * 100 + 44,	DNF: false }
+	]
+}.to_json
+Record.create(
+	user_id: 1,
+	contest_id: 1,
+	information: json
+)
+json = {
+	result: [
+		{ time: 0 * 60 * 100 + 40 * 100 + 55, DNF: true },
+		{ time: 1 * 20 * 100 + 10 * 100 + 55, DNF: true },
+		{	time: 2 * 60 * 100 + 20 * 100 + 44,	DNF: false }
+	]
+}.to_json
+Record.create(
+	user_id: 2,
+	contest_id: 1,
+	information: json
+)
+json = {
+	result: [
+		{ time: 0 * 60 * 100 + 55 * 100 + 55, DNF: false },
+		{ time: 0 * 20 * 100 + 58 * 100 + 55, DNF: false },
+		{	time: 0 * 60 * 100 + 49 * 100 + 44,	DNF: false }
+	]
+}.to_json
+Record.create(
+	user_id: 3,
+	contest_id: 1,
+	information: json
+)
+
+json = {
+	result: [
+		{ time: 0 * 60 * 100 + 55 * 100 + 55, DNF: true },
+		{ time: 0 * 20 * 100 + 58 * 100 + 55, DNF: true },
+		{	time: 0 * 60 * 100 + 49 * 100 + 44,	DNF: true }
+	]
+}.to_json
+Record.create(
+	user_id: 4,
+	contest_id: 1,
+	information: json
+)
