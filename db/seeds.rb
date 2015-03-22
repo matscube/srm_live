@@ -28,3 +28,4 @@ Contest.create(
 	information: "{}"
 )
 
+User.delete_all
