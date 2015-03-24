@@ -1,0 +1,5 @@
+Time::DATE_FORMATS[:default] = '%Y/%m/%d(%a) %H:%M'
+Time::DATE_FORMATS[:datetime] = '%Y/%m/%d(%a) %H:%M'
+Time::DATE_FORMATS[:date] = '%Y/%m/%d(%a)'
+Time::DATE_FORMATS[:time] = '%H:%M:%S'
+Date::DATE_FORMATS[:default] = '%Y/%m/%d(%a)'
