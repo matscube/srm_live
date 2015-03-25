@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   get 'contests/list'
 
-  get 'contests/show'
+  get 'contests/show/:id' => 'contests#show', as: :contests_show
 
   resources :samples
 
