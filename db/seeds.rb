@@ -10,25 +10,47 @@
 
 Contest.delete_all
 Contest.connection.execute("delete from sqlite_sequence where name='contests'")
+
+json = {
+	scrambles: [
+		"R L' U D2 R L2 B' D2 R R L' U D2 R L2 B' D2 R R L' U D2 R L2 B' D2 R",
+		"R L' U D2 R L2 B' D2 R R L' U D2 R L2 B' D2 R R L' U D2 R L2 B' D2 R",
+		"R L' U D2 R L2 B' D2 R R L' U D2 R L2 B' D2 R R L' U D2 R L2 B' D2 R"
+	]
+}.to_json
 Contest.create(
 	count: "1",
 	from_date: DateTime.new(2015, 2, 28, 0),
 	to_date: DateTime.new(2015, 3, 4, 24),
-	information: "{}"
+	information: json,
 )
 
 Contest.create(
 	count: "2",
 	from_date: DateTime.new(2015, 3, 5, 0),
 	to_date: DateTime.new(2015, 3, 11, 24),
-	information: "{}"
+	information: json,
 )
 
 Contest.create(
 	count: "3",
 	from_date: DateTime.new(2015, 3, 12, 0),
 	to_date: DateTime.new(2015, 3, 18, 24),
-	information: "{}"
+	information: json,
+)
+
+Contest.create(
+	count: "4",
+	from_date: DateTime.new(2015, 3, 19, 0),
+	to_date: DateTime.new(2015, 3, 25, 24),
+	information: json,
+)
+
+Contest.create(
+	count: "5",
+	from_date: DateTime.new(2015, 3, 26, 0),
+	to_date: DateTime.new(2015, 4, 1, 24),
+	information: json,
 )
 
 User.delete_all

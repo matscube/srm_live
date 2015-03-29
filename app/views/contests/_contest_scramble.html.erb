@@ -1,0 +1,21 @@
+<%
+	info = JSON.parse(@contest.information)
+	scrambles = info["scrambles"]
+%>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>スクランブル</th>
+    </tr>
+  </thead>
+  <tbody>
+  	<% scrambles.each_with_index do |scramble, index| %>
+    <tr>
+      <td><%= index + 1 %></td>
+      <td><%= scramble %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

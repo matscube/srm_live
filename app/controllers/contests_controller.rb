@@ -1,6 +1,7 @@
 class ContestsController < ApplicationController
   layout 'master'
   def index
+    @contest = Contest.current_contest
   end
 
   def submit
