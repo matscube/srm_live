@@ -9,7 +9,7 @@ stderr_path "#{rails_root}/log/unicorn_error.log"
 stdout_path "#{rails_root}/log/unicorn.log"
 
 
-shared_path = '/var/www/#{application}/shared'
+shared_path = "/var/www/#{application}/shared"
 pid "#{shared_path}/pids/unicorn_#{application}.pid"
 
 before_fork do |server, worker|
