@@ -2,6 +2,12 @@ class ContestsController < ApplicationController
   layout 'master'
   def index
     @contest = Contest.current_contest
+
+    if @contest.present?
+      @users = Record.where(contest_id: @contest.id)
+    else
+      @users = []
+    end
   end
 
   def submit
