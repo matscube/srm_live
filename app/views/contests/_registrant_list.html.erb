@@ -1,0 +1,29 @@
+<h3>提出済み一覧</h3>
+
+<table class="table table-striped user-list">
+  <thead>
+    <tr>
+      <th>提出順</th>
+      <th>名前</th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+  <% if @records.count.blank? %>
+    <tr>
+      <td colspan="3">なし</td>
+    </tr>
+  <% else %>
+    <% @records.each_with_index do |record, index| %>
+    <% user = @users[record.user_id] %>
+    <tr>
+      <td><%= index + 1 %></td>
+      <td><%= user.name %></td>
+    </tr>
+    <% end %>
+  <% end %>
+
+  </tbody>
+
+</table>

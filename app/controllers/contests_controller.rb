@@ -4,9 +4,10 @@ class ContestsController < ApplicationController
     @contest = Contest.current_contest
 
     if @contest.present?
-      @users = Record.where(contest_id: @contest.id)
+      @records = Record.where(contest_id: @contest.id)
+      @users = User.all.index_by(&:id)
     else
-      @users = []
+      @records = []
     end
   end
 
@@ -29,6 +30,18 @@ class ContestsController < ApplicationController
     else
       @result = Record.get_result @contest.id
       @users = User.all.index_by(&:id)
+    end
+  end
+
+  # PUT /register
+  def register
+    p params
+
+    if params["hidden"].present?
+      flash[:notice] = "入力形式に誤りがあります"
+      render 'submit'
+    else
+      redirect_to :action => 'index'
     end
   end
 end
