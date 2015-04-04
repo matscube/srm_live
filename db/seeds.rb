@@ -53,6 +53,13 @@ Contest.create(
 	information: json,
 )
 
+Contest.create(
+	count: "6",
+	from_date: DateTime.new(2015, 4, 2, 0),
+	to_date: DateTime.new(2015, 4, 8, 24),
+	information: json,
+)
+
 User.delete_all
 User.connection.execute("delete from sqlite_sequence where name='users'")
 User.create(
@@ -124,5 +131,31 @@ json = {
 Record.create(
 	user_id: 4,
 	contest_id: 1,
+	information: json
+)
+
+json = {
+	result: [
+		{ time: 0 * 60 * 100 + 55 * 100 + 55, DNF: true },
+		{ time: 0 * 20 * 100 + 58 * 100 + 55, DNF: true },
+		{	time: 0 * 60 * 100 + 49 * 100 + 44,	DNF: true }
+	]
+}.to_json
+Record.create(
+	user_id: 3,
+	contest_id: 5,
+	information: json
+)
+
+json = {
+	result: [
+		{ time: 0 * 60 * 100 + 55 * 100 + 55, DNF: true },
+		{ time: 0 * 20 * 100 + 58 * 100 + 55, DNF: true },
+		{	time: 0 * 60 * 100 + 49 * 100 + 44,	DNF: true }
+	]
+}.to_json
+Record.create(
+	user_id: 3,
+	contest_id: 6,
 	information: json
 )
