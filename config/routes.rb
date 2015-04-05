@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 
   get 'contests/show/:id' => 'contests#show', as: :contests_show
 
+  put 'contests/register'
+
   resources :samples
 
   # The priority is based upon order of creation: first created -> highest priority.
