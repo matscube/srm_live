@@ -1,4 +1,4 @@
-<h1>Contest結果一覧</h1>
+<h3>Contest結果一覧</h3>
 
 
 
@@ -13,61 +13,37 @@
     </tr>
   </thead>
   <tbody>
+    <% @contests.each do |contest| %>
+    <% summary = Record.get_summary contest.id %>
     <tr>
       <td>
-      	<%= link_to '第1回BLD Contest', contests_show_path, { :class => 'btn btn-link' } %>
+        <%= link_to "第#{contest.count}回BLD Contest", contests_show_path(id: contest.id), { :class => 'btn btn-link' } %>
       </td>
       <td>
-      	<%= link_to 'まっちゃん', contests_show_path, { :class => 'btn btn-link' } %>
+        <div class="center">
+        <% if summary.present? %>
+        <% user = @users[summary[:winner_id]] %>
+        <%= user.name %>
+        <% else %>
+        -
+        <% end %>
+        </div>
       </td>
       <td>
-      	<div class="center">
-      	1:00.00
-	      </div>
+        <div class="center">
+        <% if summary.present? %>
+        <%= summary[:winner_time_label] %>
+        <% else %>
+        -
+        <% end %>
+        </div>
       </td>
       <td>
-      	<div class="center">
-      	2014/12/11 ~ 2014/12/18
-	      </div>
+        <div class="center">
+        <%= contest.period_string %>
+        </div>
       </td>
     </tr>
-
-    <tr>
-      <td>
-      	<%= link_to '第1回BLD Contest', contests_show_path, { :class => 'btn btn-link' } %>
-      </td>
-      <td>
-      	<%= link_to 'まっちゃん', contests_show_path, { :class => 'btn btn-link' } %>
-      </td>
-      <td>
-      	<div class="center">
-      	1:00.00
-	      </div>
-      </td>
-      <td>
-      	<div class="center">
-      	2014/12/11 ~ 2014/12/18
-	      </div>
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-      	<%= link_to '第1回BLD Contest', contests_show_path, { :class => 'btn btn-link' } %>
-      </td>
-      <td>
-      	<%= link_to 'まっちゃん', contests_show_path, { :class => 'btn btn-link' } %>
-      </td>
-      <td>
-      	<div class="center">
-      	1:00.00
-	      </div>
-      </td>
-      <td>
-      	<div class="center">
-      	2014/12/11 ~ 2014/12/18
-	      </div>
-      </td>
-    </tr>
+    <% end %>
   </tbody>
 </table>
