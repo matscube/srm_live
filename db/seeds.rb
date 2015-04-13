@@ -60,6 +60,14 @@ Contest.create(
 	information: json,
 )
 
+Contest.create(
+	count: "7",
+	from_date: DateTime.new(2015, 4, 9, 0),
+	to_date: DateTime.new(2015, 4, 15, 24),
+	information: json,
+)
+
+
 User.delete_all
 User.connection.execute("delete from sqlite_sequence where name='users'")
 User.create(

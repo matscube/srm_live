@@ -13,6 +13,21 @@ class Record < ActiveRecord::Base
 		end
 	end
 
+	def self.get_time_from_string time_string
+		exp1 = /^([0-9]|[1-5][0-9]).([0-9][0-9])$/
+		exp2 = /^([1-9]|[1-5][0-9]):([0-5][0-9]).([0-9][0-9])$/
+
+		if time_string =~ exp1
+			res1 = exp1.match time_string
+			return res1[1].to_i * 100 + res1[2].to_i
+		elsif time_string =~ exp2
+			res2 = exp2.match time_string
+			return res2[1].to_i * 100 * 60 + res2[2].to_i * 100 + res2[3].to_i
+		else
+			return false
+		end
+	end
+
 	def self.time_label time
 		if time > MAX_TIME
 			time = MAX_TIME
