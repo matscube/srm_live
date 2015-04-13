@@ -12,8 +12,7 @@ class ContestsController < ApplicationController
   end
 
   def submit
-  	@sample = Hoge.new
-  	@sample.title = 'hoge'
+  	@submit_info = SubmitInformation.new
   end
 
   def list
@@ -37,18 +36,36 @@ class ContestsController < ApplicationController
   def register
     p params
 
-    if params["hidden"].present?
+    valid = true
+
+    params["time"].each do |time|
+      valid = false unless Record.validate_time_string time
+    end
+    (1..3).each do |index|
+      key = "DNF-#{index}"
+      if params[key].present?
+        p "DNF: #{index}"
+      else
+
+      end
+    end
+
+    if valid.blank?
       flash[:notice] = "入力形式に誤りがあります"
+      @submit_info = SubmitInformation.create_with_params params
       render 'submit'
     else
+
       redirect_to :action => 'index'
     end
   end
 end
 
-class Hoge
-	attr_accessor :title, :label
-	def model_name
-		'Hoge'
-	end
+class SubmitInformation
+	attr_accessor :title, :label, :comment
+  def self.create_with_params params
+    res = SubmitInformation.new
+    res.comment = "Re comment"
+    return res
+  end
 end
