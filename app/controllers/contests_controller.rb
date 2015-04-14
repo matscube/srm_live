@@ -1,3 +1,5 @@
+require 'time_manager'
+
 class ContestsController < ApplicationController
   layout 'master'
   def index
@@ -12,6 +14,7 @@ class ContestsController < ApplicationController
   end
 
   def submit
+    @contest = Contest.current_contest
   	@submit_info = SubmitInformation.new
   end
 
@@ -38,6 +41,16 @@ class ContestsController < ApplicationController
 
     valid = true
     record = Record.new
+
+    # Contest
+    contest_count = params["contest_count"]
+    # TODO: validate contest_count
+    contest = Contest.where(count: contest_count)[0]
+    if contest.present?
+      record.contest_id = contest.id
+    else
+      valid = false
+    end
 
     # User
     user_name = params["registrant"]
