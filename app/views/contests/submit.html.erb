@@ -12,7 +12,7 @@
 
 <%= form_tag('/contests/register', :method => :put) do %>
 
-<input type="hidden" name="hidden" value="1">
+<input type="hidden" name="contest_count" value="<%= @contest.count %>">
 
 <div class="input-prepend">
     <span class="add-on">@</span>
