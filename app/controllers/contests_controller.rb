@@ -1,5 +1,3 @@
-require 'time_manager'
-
 class ContestsController < ApplicationController
   layout 'master'
   def index
