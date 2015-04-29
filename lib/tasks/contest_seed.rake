@@ -1,5 +1,7 @@
 # Create new contest
 
+require 'rubik_cube'
+
 namespace :db do
 
   desc "Create new contest"
@@ -12,11 +14,13 @@ namespace :db do
 		end
 		p "New Contest number: " + contest_number.to_s
 
+
+		scramble_size = 20
 		json = {
 			scrambles: [
-				"R L' U D2 R L2 B' D2 R R L' U D2 R L2 B' D2 R R L' U D2 R L2 B' D2 R",
-				"R L' U D2 R L2 B' D2 R R L' U D2 R L2 B' D2 R R L' U D2 R L2 B' D2 R",
-				"R L' U D2 R L2 B' D2 R R L' U D2 R L2 B' D2 R R L' U D2 R L2 B' D2 R"
+				RubikCube.get_scramble_string(scramble_size),
+				RubikCube.get_scramble_string(scramble_size),
+				RubikCube.get_scramble_string(scramble_size)
 			]
 		}.to_json
 		Contest.create(
