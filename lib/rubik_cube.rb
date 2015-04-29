@@ -21,4 +21,9 @@ class RubikCube
 		end
 		return scramble
 	end
+
+	def self.get_scramble_string size
+		scramble = get_scramble size
+		scramble.join " "
+	end
 end
