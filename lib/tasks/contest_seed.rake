@@ -4,8 +4,11 @@ require 'rubik_cube'
 
 namespace :db do
 
+	# Usage: rake "db:contest_seed[2015, 4, 27]"
   desc "Create new contest"
-  task :contest_seed => [:environment] {
+  task :contest_seed, [:year, :month, :day] => [:environment] do |t, args|
+    p "FromDate: " + args[:year].to_s + "/" + args[:month].to_s + "/" + args[:day].to_s + " 00:00"
+
 		contests = Contest.all.order(:count)
 
 		contest_number = 1
@@ -29,5 +32,5 @@ namespace :db do
 			to_date: DateTime.new(2015, 3, 4, 24),
 			information: json,
 		)
-	}
+	end
 end
