@@ -9,4 +9,9 @@ class Contest < ActiveRecord::Base
 		currentDate = TimeManager.now
 		Contest.where("from_date <= ? and ? <= to_date", currentDate, currentDate)[0]
 	end
+
+	def self.finished_contest_list
+		currentDate = TimeManager.now
+		Contest.where("to_date <= ?", currentDate)
+	end
 end

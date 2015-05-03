@@ -17,7 +17,7 @@ class ContestsController < ApplicationController
   end
 
   def list
-    @contests = Contest.all.order(:count).reverse_order
+    @contests = Contest.finished_contest_list.order(:count).reverse_order
     @users = User.all.index_by(&:id)
   end
 
