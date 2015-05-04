@@ -42,46 +42,101 @@ class ContestsController < ApplicationController
   # PUT /register
   def register
     p params
+    if SubmitInformation.validate params
+      SubmitInformation.register params
+      redirect_to :action => 'index'
+    else
+      flash[:notice] = "入力形式に誤りがあります"
+      @contest = Contest.current_contest
+      @submit_info = SubmitInformation.create_with_params params
+      render 'submit'
+    end
+  end
 
-    valid = true
-    record = Record.new
+end
 
+class SubmitInformation
+  attr_accessor :dnf_checked, :time, :registrant, :comment
+
+  def initialize
+    @registrant = ""
+    @dnf_checked = ["", "", ""]
+    @time = ["", "", ""]
+    @comment = ""
+  end
+
+  def self.create_with_params params
+    res = SubmitInformation.new
+
+    res.registrant = params["registrant"]
+    res.dnf_checked = []
+    (1..3).each do |index|
+      key = "DNF-#{index}"
+      if params[key].present?
+        res.dnf_checked.push "checked"
+      else
+        res.dnf_checked.push ""
+      end
+    end
+    res.time = params["time"]
+    res.comment = params["comment"]
+    return res
+  end
+
+  def self.validate params
     # Contest
     contest_count = params["contest_count"]
-    # TODO: validate contest_count
-    contest = Contest.where(count: contest_count)[0]
-    if contest.present?
-      record.contest_id = contest.id
+    if contest_count == ""
+      p "ERROR: contest count is null"
+      return false
     else
-      valid = false
+      contest = Contest.where(count: contest_count)[0]
+      if contest.blank?
+        p "ERROR: contest_count#{contest_count} is nowhere"
+        return false
+      end
     end
 
     # User
     user_name = params["registrant"]
     if user_name == ""
-      valid = false
-      user = User.new
-    else
-      user = User.where(name: user_name)[0]
-      if user.blank?
-        user = User.create(
-          name: user_name,
-          email: "",
-        )
-      end
-      record.user_id = user.id
+      p "ERROR: user_name is null"
+      return false
     end
+
+    # Time
+    params["time"].each do |time, index|
+      unless Record.validate_time_string time
+        p "ERROR: record string format is invalid: #{time}"
+        return false
+      end
+    end
+  end
+
+  def self.register params
+    record = Record.new
+
+    # Contest
+    contest_count = params["contest_count"]
+    contest = Contest.where(count: contest_count)[0]
+    record.contest_id = contest.id
+
+    # User
+    user_name = params["registrant"]
+    user = User.where(name: user_name)[0]
+    if user.blank?
+      user = User.create(
+        name: user_name,
+        email: "",
+      )
+    end
+    record.user_id = user.id
 
     # Time
     times = []
     params["time"].each do |time, index|
-      if Record.validate_time_string time
-        t = Record.get_time_from_string time
-        times.push t
-      else
-        valid = false
-        times.push 0
-      end
+      t = Record.get_time_from_string time
+      times.push t
     end
     dnfs = []
     (1..3).each do |index|
@@ -98,34 +153,12 @@ class ContestsController < ApplicationController
     result.push ({ time: times[0], DNF: dnfs[0] })
     result.push ({ time: times[1], DNF: dnfs[1] })
     result.push ({ time: times[2], DNF: dnfs[2] })
-    
 
-
-    if valid.blank?
-      flash[:notice] = "入力形式に誤りがあります"
-      @submit_info = SubmitInformation.create_with_params params
-      render 'submit'
-    else
-
-
-      json = {
-        result: result,
-        comment: params["comment"],
-      }.to_json
-      record.contest_id = 7
-      record.information = json
-      record.save
-
-      redirect_to :action => 'index'
-    end
-  end
-end
-
-class SubmitInformation
-	attr_accessor :title, :label, :comment
-  def self.create_with_params params
-    res = SubmitInformation.new
-    res.comment = "Re comment"
-    return res
+    json = {
+      result: result,
+      comment: params["comment"],
+    }.to_json
+    record.information = json
+    record.save
   end
 end

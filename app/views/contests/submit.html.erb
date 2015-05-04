@@ -16,7 +16,7 @@
 
 <div class="input-prepend">
     <span class="add-on">@</span>
-    <input name="registrant" class="span2" id="prependedInput" type="text" placeholder="ハンドルネーム">
+    <input name="registrant" class="span2" id="prependedInput" type="text" placeholder="ハンドルネーム" value="<%= @submit_info.registrant %>">
 </div>
 
 <% (1..3).each do |index| %>
@@ -24,12 +24,14 @@
 <% dnf_name = "DNF-" + index.to_s %>
 <% time_name = "time[]" %>
 <% time_label = index.to_s + "回目のタイム" %>
+<% checked = @submit_info.dnf_checked[index-1] %>
+<% time = @submit_info.time[index-1] %>
 
 <div class="input-group input-group-lg">
 	<div class="input-prepend">
 	    <span class="add-on"><%= index %></span>
-	    <span class="add-on">DNF: <input name="<%= dnf_name %>" type="checkbox" aria-label="..."></span>
-	    <input name="<%= time_name %>" class="span2" id="prependedInput" type="text" placeholder="<%= time_label %>" value="1:00.11">
+	    <span class="add-on">DNF: <input name="<%= dnf_name %>" type="checkbox" aria-label="..." <%= checked %>></span>
+	    <input name="<%= time_name %>" class="span2" id="prependedInput" type="text" placeholder="<%= time_label %>" value="<%= time %>">
 	</div>
 </div>
 
