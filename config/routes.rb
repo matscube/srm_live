@@ -5,6 +5,8 @@ Rails.application.routes.draw do
 
   get 'contests/list'
 
+  get 'contests/schedule'
+
   get 'contests/show/:id' => 'contests#show', as: :contests_show
 
   put 'contests/register'

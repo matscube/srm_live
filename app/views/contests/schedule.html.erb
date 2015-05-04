@@ -1,0 +1,30 @@
+<h3>Contest開催スケジュール</h3>
+
+
+
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Contest</th>
+      <th>開催予定日</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @contests.each do |contest| %>
+    <% summary = Record.get_summary contest.id %>
+    <tr>
+      <td>
+        <div class="center">
+        <%= "第#{contest.count}回BLD Contest" %>
+        </div>
+      </td>
+      <td>
+        <div class="center">
+        <%= contest.period_string %>
+        </div>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -21,6 +21,10 @@ class ContestsController < ApplicationController
     @users = User.all.index_by(&:id)
   end
 
+  def schedule
+    @contests = Contest.scheduled_contest_list.order(:count)
+  end
+
   # GET /show/1
   def show
     id = params[:id]

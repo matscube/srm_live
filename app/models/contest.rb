@@ -14,4 +14,9 @@ class Contest < ActiveRecord::Base
 		currentDate = TimeManager.now
 		Contest.where("to_date <= ?", currentDate)
 	end
+
+	def self.scheduled_contest_list
+		currentDate = TimeManager.now
+		Contest.where("? < from_date", currentDate)
+	end
 end
