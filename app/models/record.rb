@@ -38,22 +38,28 @@ class Record < ActiveRecord::Base
 		cs = time % 100
 
 		res = ""
-		cs = format("%02d", cs)
-		res = cs.to_s
 
-		if s > 0
-			s = format("%02d", s) if m > 0
-			res = s.to_s + ":" + res
+		left = true
+		if h > 0
+			res = h.to_s + ":"
+			left = false
 		end
 
 		if m > 0
-			m = format("%02d", m) if h > 0
-			res = m.to_s + ":" + res
+			res = res + m.to_s + ":"
+			left = false
+		elsif m == 0 && !left
+			res = res + "00:"
 		end
 
-		res = h.to_s + ":" + res if h > 0
+		if s > 0
+			res = res + s.to_s + "."
+			left = false
+		elsif s == 0 && !left
+			res = res + "00."
+		end
 
-		res
+		res = res + format("%02d", cs)
 	end
 
 	def self.get_summary contest_id
