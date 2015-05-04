@@ -31,6 +31,8 @@ class ContestsController < ApplicationController
     @contest = Contest.where(id: id)[0]
     if @contest.blank?
       redirect_to action: 'list'
+    elsif !@contest.finished?
+      redirect_to action: 'index'
     else
       @result = Record.get_result @contest.id
       @users = User.all.index_by(&:id)

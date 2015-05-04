@@ -5,6 +5,11 @@ class Contest < ActiveRecord::Base
 		from_date.to_s(:date) + " ~ " + to_date.to_s(:date)
 	end
 
+	def finished?
+		currentDate = TimeManager.now
+		to_date <= currentDate
+	end
+
 	def self.current_contest
 		currentDate = TimeManager.now
 		Contest.where("from_date <= ? and ? <= to_date", currentDate, currentDate)[0]
