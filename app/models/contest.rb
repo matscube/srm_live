@@ -1,4 +1,3 @@
-require 'time_manager'
 
 class Contest < ActiveRecord::Base
 	def period_string
