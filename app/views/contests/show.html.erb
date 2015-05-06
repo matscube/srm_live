@@ -1,8 +1,6 @@
 <h3>第<%= @contest.count %>回 BLD Contest　結果発表</h3>
 
 
-<!-- TODO: show comment -->
-
 <% if @result.count > 0 %>
 <table class="table table-striped">
   <thead>
@@ -13,6 +11,7 @@
       <th>1回目</th>
       <th>2回目</th>
       <th>3回目</th>
+      <th>コメント</th>
     </tr>
   </thead>
   <tbody>
@@ -26,6 +25,9 @@
       <% res[:result].each do |record| %>
         <td><%= record[:time_label] %></td>
       <% end %>
+      <td>
+        <%= res[:comment] %>
+      </td>
     </tr>
     <% end %>
   </tbody>

@@ -109,8 +109,8 @@ class Record < ActiveRecord::Base
 		user_plus = []
 		user_dnf = []
 		records.each do |record|
-			data = JSON.parse(record.information)
-			res = data["result"]
+			info_data = JSON.parse(record.information)
+			res = info_data["result"]
 
 			# calc best_time
 			best_time = -1
@@ -148,8 +148,9 @@ class Record < ActiveRecord::Base
 					end
 				end
 				data[:result] = result
-
+				data[:comment] = info_data["comment"]
 				user_dnf.push data
+
 			else
 				data = {
 					user_id: record.user_id,
@@ -175,6 +176,7 @@ class Record < ActiveRecord::Base
 					end
 				end
 				data[:result] = result
+				data[:comment] = info_data["comment"]
 				user_plus.push data
 			end
 		end
