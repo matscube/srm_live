@@ -3,8 +3,9 @@
 <h3>記録提出フォーム</h1>
 </div>
 
-<!-- TODO: show scramble -->
+<%= render 'contest_scramble', contest: @contest %>
 
+<h5>記録</h5>
 <% if flash[:notice].present? %>
 <div class="alert alert-danger" role="alert">
 	<%= flash[:notice] %>
