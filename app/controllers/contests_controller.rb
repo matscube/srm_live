@@ -105,8 +105,19 @@ class SubmitInformation
     end
 
     # Time
-    params["time"].each do |time, index|
+    dnfs = []
+    (1..3).each do |index|
+      key = "DNF-#{index}"
+      if params[key].present?
+        p "DNF: #{index}"
+        dnfs.push true
+      else
+        dnfs.push false
+      end
+    end
+    params["time"].each_with_index do |time, index|
       unless Record.validate_time_string time
+        next if dnfs[index]
         p "ERROR: record string format is invalid: #{time}"
         return false
       end
@@ -133,11 +144,6 @@ class SubmitInformation
     record.user_id = user.id
 
     # Time
-    times = []
-    params["time"].each do |time, index|
-      t = Record.get_time_from_string time
-      times.push t
-    end
     dnfs = []
     (1..3).each do |index|
       key = "DNF-#{index}"
@@ -146,6 +152,15 @@ class SubmitInformation
         dnfs.push true
       else
         dnfs.push false
+      end
+    end
+    times = []
+    params["time"].each_with_index do |time, index|
+      if dnfs[index]
+        times.push -1
+      else
+        t = Record.get_time_from_string time
+        times.push t
       end
     end
 
