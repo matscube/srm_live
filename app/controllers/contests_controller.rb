@@ -86,6 +86,7 @@ class SubmitInformation
   def self.validate params
     # Contest
     contest_count = params["contest_count"]
+    contest = Contest.new
     if contest_count == ""
       p "ERROR: contest count is null"
       return false
@@ -102,6 +103,13 @@ class SubmitInformation
     if user_name == ""
       p "ERROR: user_name is null"
       return false
+    end
+    user = User.where(name: user_name)[0]
+    if user.present?
+      if Record.where(contest_id: contest.id, user_id: user.id)[0].present?
+        p "ERROR: user(id: #{user.id}) has already submitted"
+        return false
+      end
     end
 
     # Time
