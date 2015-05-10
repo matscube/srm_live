@@ -83,6 +83,7 @@ class SubmitInformation
     return res
   end
 
+  # TODO: show error detail
   def self.validate params
     # Contest
     contest_count = params["contest_count"]
