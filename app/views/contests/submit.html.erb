@@ -21,6 +21,14 @@
     <input name="registrant" class="span2" id="prependedInput" type="text" placeholder="ハンドルネーム" value="<%= @submit_info.registrant %>">
 </div>
 
+<div class="input-group input-group-lg">
+	<div class="input-prepend">
+	    <span class="add-on">例</span>
+	    <span class="add-on">DNF: <input name="" type="checkbox" aria-label="..." disabled></span>
+	    <input name="" class="span2" id="prependedInput" type="text" placeholder="" value="35.33" disabled>
+	</div>
+</div>
+
 <% (1..3).each do |index| %>
 
 <% dnf_name = "DNF-" + index.to_s %>
