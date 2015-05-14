@@ -2,7 +2,7 @@
   <h3>第<%= @contest.count %>回コンテスト開催中</h3>
   <%= render 'contest_scramble', contest: @contest %>
   <a class="btn btn-success dropdown-toggle" href="<%= contests_submit_path %>">
-    投稿する
+    コンテストに参加する
   </a>
   <%= render 'registrant_list', records: @records %>
 
