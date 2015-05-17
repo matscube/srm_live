@@ -9,6 +9,9 @@
 # TODO: reset auto_increment by db env
 
 Contest.delete_all
+# if mysql
+# Contest.connection.execute('alter sequence contests_id_seq restart with 1')
+# else if sqlite
 Contest.connection.execute("delete from sqlite_sequence where name='contests'")
 
 json = {
