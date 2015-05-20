@@ -8,26 +8,21 @@
 
 # TODO: reset auto_increment by db env
 
-def reset_sequence table_name
-	p table_name
+def reset_sequence_sql table_name
+	adapter = ActiveRecord::Base.configurations[Rails.env]['adapter']
+	reset_sequence_sql = ""
+	case adapter
+		when "sqlite3" then
+			reset_sequence_sql = "delete from sqlite_sequence where name='#{table_name}'"
+		when "mysql2" then
+			reset_sequence_sql = "alter sequence #{table_name}_id_seq restart with 1"
+		else
+	end
+	return reset_sequence_sql
 end
-
-reset_sequence "contests"
-
-
-adapter = ActiveRecord::Base.configurations[Rails.env]['adapter']
-reset_sequence_sql = ""
-case adapter
-	when "sqlite3" then
-		reset_sequence_sql = "delete from sqlite_sequence where name='contests'"
-	when "mysql2" then
-		reset_sequence_sql = "alter sequence contests_id_seq restart with 1"
-	else
-end
-
 
 Contest.delete_all
-Contest.connection.execute(reset_sequence_sql)
+Contest.connection.execute(reset_sequence_sql('contests'))
 
 json = {
 	scrambles: [
