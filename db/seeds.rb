@@ -8,6 +8,12 @@
 
 # TODO: reset auto_increment by db env
 
+def reset_sequence table_name
+	p table_name
+end
+
+reset_sequence "contests"
+
 
 adapter = ActiveRecord::Base.configurations[Rails.env]['adapter']
 reset_sequence_sql = ""
