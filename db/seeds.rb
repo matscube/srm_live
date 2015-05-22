@@ -82,7 +82,7 @@ Contest.create(
 
 
 User.delete_all
-User.connection.execute("delete from sqlite_sequence where name='users'")
+User.connection.execute(reset_sequence_sql('users'))
 User.create(
 	name: "まっちゃん",
 	email: "matscube@gmail.com"
