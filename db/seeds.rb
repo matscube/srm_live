@@ -104,7 +104,7 @@ User.create(
 )
 
 Record.delete_all
-Record.connection.execute("delete from sqlite_sequence where name='records'")
+Record.connection.execute(reset_sequence_sql('records'))
 json = {
 	result: [
 		{ time: 3 * 60 * 100 + 40 * 100 + 55, DNF: false },
