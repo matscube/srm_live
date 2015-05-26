@@ -2,6 +2,7 @@
 
 
 
+<% if @contests.count > 0 %>
 
 <table class="table table-striped">
   <thead>
@@ -47,3 +48,11 @@
     <% end %>
   </tbody>
 </table>
+
+<% else %>
+
+コンテストがありません
+
+<% end %>
+
+
