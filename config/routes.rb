@@ -1,17 +1,17 @@
 Rails.application.routes.draw do
   get 'contests/index'
 
-  get 'contests/submit'
+#  get 'contests/submit'
 
-  get 'contests/list'
+#  get 'contests/list'
 
-  get 'contests/schedule'
+#  get 'contests/schedule'
 
-  get 'contests/show/:id' => 'contests#show', as: :contests_show
+#  get 'contests/show/:id' => 'contests#show', as: :contests_show
 
-  put 'contests/register'
+#  put 'contests/register'
 
-  resources :samples
+#  resources :samples
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

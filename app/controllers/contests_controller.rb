@@ -1,14 +1,23 @@
 class ContestsController < ApplicationController
   layout 'master'
   def index
-    @contest = Contest.current_contest
+    @classes = [
+      "panel-primary",
+      "panel-success",
+      "panel-info",
+      "panel-warning",
+      "panel-danger"
+    ]
+    @tweets = [
+      { user: "matscube", tweet: "ぐぬぬ", type: 1},
+      { user: "matscube", tweet: "ぐぬぬ", type: 1},
+      { user: "matscube", tweet: "ぐぬぬ", type: 3},
+      { user: "matscube", tweet: "ぐぬぬ", type: 2},
+      { user: "matscube", tweet: "ぐぬぬ", type: 3},
+      { user: "matscube", tweet: "ぐぬぬ", type: 4},
+      { user: "matscube", tweet: "ぐぬぬ", type: 0}
+    ]
 
-    if @contest.present?
-      @records = Record.where(contest_id: @contest.id)
-      @users = User.all.index_by(&:id)
-    else
-      @records = []
-    end
   end
 
   def submit
