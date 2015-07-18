@@ -10,25 +10,42 @@
   <h5>TCO2015</h5>
 <% end %>
 
-<div class="progress">
-  <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-    <span class="sr-only">残り時間 35分</span>
-  </div>
-</div>
+
+<div class="container">
+	<div class="progress">
+	  <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+	    <span class="sr-only">残り時間 35分</span>
+	  </div>
+	</div>
+
+    <div class="row">
+      <div class="span8">
+      	hoge
+      </div>
+      <div class="span3">
+				<!-- twitter list -->
+				<% @tweets.each do |tweet| %>
+				<div class="panel <%= @classes[tweet[:type]] %>">
+				  <div class="panel-heading">
+				    <h5 class="panel-title"><%= tweet[:user] %></h3>
+				  </div>
+				  <div class="panel-body">
+				    <%= tweet[:tweet] %>
+				  </div>
+				</div>
+				<% end %>
+      </div><!--/span-->
+    </div><!--/row-->
+  <footer>
+    <!--p>&copy; Company 2015</p-->
+  </footer>
+
+</div> <!-- /container -->
 
 
 
-<!-- twitter list -->
-<% @tweets.each do |tweet| %>
-<div class="panel <%= @classes[tweet[:type]] %>">
-  <div class="panel-heading">
-    <h5 class="panel-title"><%= tweet[:user] %></h3>
-  </div>
-  <div class="panel-body">
-    <%= tweet[:tweet] %>
-  </div>
-</div>
-<% end %>
+
+
 
 
 
@@ -39,9 +56,3 @@
   </div>
 </div>
 
-
-<div class="progress">
-  <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-    <span class="sr-only">40% Complete (success)</span>
-  </div>
-</div>
