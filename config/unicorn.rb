@@ -1,4 +1,4 @@
-application = 'blinder_contest'
+application = 'srm_live'
 rails_root = File.expand_path('../../', __FILE__)
 
 worker_processes 2

@@ -1,8 +1,8 @@
 # config valid only for current version of Capistrano
 lock '3.4.0'
 
-set :application, 'blinder_contest'
-set :repo_url, 'git@github.com:matscube/blinder_contest.git'
+set :application, 'srm_live'
+set :repo_url, 'git@github.com:matscube/srm_live.git'
 
 # Default branch is :master
 ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
@@ -53,7 +53,7 @@ namespace :deploy do
       within release_path do
         execute :ln, "-s ../../shared/config/.env .env"
 #        within 'config' do
-#          execute :ln, "-s /var/www/blinder_contest/shared/config/database.yml database.yml"
+#          execute :ln, "-s /var/www/srm_live/shared/config/database.yml database.yml"
 #        end
       end
     end
