@@ -7,38 +7,73 @@
   <%= render 'registrant_list', records: @records %>
 
 <% else %>
-  <h5>TCO2015</h5>
+  <h5>SRM777 開催中</h5>
 <% end %>
 
 
 <div class="container">
 
 
-
 	<div class="progress">
 	  <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-	    <span class="sr-only">残り時間 35分</span>
+	    <span>残り時間 40分</span>
 	  </div>
 	</div>
 
-<div>
-    <svg viewBox="20 -30 100 100" >
-        <circle class="pie1" cx="31.8309886184" cy="31.8309886184" r="15.9154943092"/>
-        <circle class="pie2" cx="31.8309886184" cy="31.8309886184" r="15.9154943092"/>
-        <circle class="pie3" cx="31.8309886184" cy="31.8309886184" r="15.9154943092"/>
-    </svg>
-</div>
 
     <div class="row">
       <div class="span8">
+
+			<div class="panel panel-default">
+				<table class="table">
+			        <thead>
+			          <tr>
+			            <th>Ranking</th>
+			            <th>Account</th>
+			            <th>Easy</th>
+			            <th>Medium</th>
+			            <th>Hard</th>
+			            <th>Score</th>
+			          </tr>
+			        </thead>
+			        <tbody>
+								<% @players.each_with_index do |player, index| %>
+			          <tr>
+			            <th scope="row"><%= index + 1 %></th>
+			            <td><%= player[:account] %></td>
+			            <td><%= player[:easy] %></td>
+			            <td><%= player[:medium] %></td>
+			            <td><%= player[:hard] %></td>
+			            <td><%= player[:score] %></td>
+			          </tr>
+			          <% end %>
+			        </tbody>
+			      </table>
+			</div>
+
       	Share
+				<div>
+				    <svg viewBox="0 0 100 100" >
+				        <circle class="pie1" cx="31.8309886184" cy="31.8309886184" r="15.9154943092"/>
+				        <circle class="pie2" cx="31.8309886184" cy="31.8309886184" r="15.9154943092"/>
+				        <circle class="pie3" cx="31.8309886184" cy="31.8309886184" r="15.9154943092"/>
+				        <circle class="pie4" cx="31.8309886184" cy="31.8309886184" r="15.9154943092"/>
+				    </svg>
+				</div>
       </div>
+
       <div class="span3">
 				<!-- twitter list -->
+				<div class="panel panel-primary">
+				  <div class="panel-heading">
+				    <h5 class="panel-title">New Tweets!</h3>
+				  </div>
+				</div>
+
 				<% @tweets.each do |tweet| %>
 				<div class="panel <%= @classes[tweet[:type]] %>">
 				  <div class="panel-heading">
-				    <h5 class="panel-title"><%= tweet[:user] %></h3>
+				    <h5 class="panel-title">@<%= tweet[:user] %></h3>
 				  </div>
 				  <div class="panel-body">
 				    <%= tweet[:tweet] %>
@@ -52,18 +87,3 @@
   </footer>
 
 </div> <!-- /container -->
-
-
-
-
-
-
-
-
-
-<div class="panel panel-default">
-  <div class="panel-body">
-    Basic panel example
-  </div>
-</div>
-

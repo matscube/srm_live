@@ -2,20 +2,32 @@ class ContestsController < ApplicationController
   layout 'master'
   def index
     @classes = [
-      "panel-primary",
       "panel-success",
       "panel-info",
       "panel-warning",
       "panel-danger"
     ]
     @tweets = [
-      { user: "matscube", tweet: "ぐぬぬ", type: 1},
-      { user: "matscube", tweet: "ぐぬぬ", type: 1},
-      { user: "matscube", tweet: "ぐぬぬ", type: 3},
+      { user: "matscube", tweet: "Medium難しい　ぐぬぬ", type: 1},
+      { user: "matscube", tweet: "問題を開くだけ", type: 1},
+      { user: "matscube", tweet: "Div1にあがれない・・・", type: 3},
       { user: "matscube", tweet: "ぐぬぬ", type: 2},
       { user: "matscube", tweet: "ぐぬぬ", type: 3},
-      { user: "matscube", tweet: "ぐぬぬ", type: 4},
-      { user: "matscube", tweet: "ぐぬぬ", type: 0}
+      { user: "matscube", tweet: "するめ楽しい", type: 3},
+      { user: "matscube", tweet: "うなぎが食べたい", type: 0}
+    ]
+
+    @players = [
+      { account: "matscube", easy: "178.22", medium: "-", hard: "778.45", score: "945.22" },
+      { account: "matscube", easy: "177.98", medium: "-", hard: "679.33", score: "830.22" },
+      { account: "matscube", easy: "178.22", medium: "-", hard: "-", score: "178.22" },
+      { account: "matscube", easy: "178.22", medium: "-", hard: "-", score: "178.22" },
+      { account: "matscube", easy: "178.22", medium: "-", hard: "-", score: "178.22" },
+      { account: "matscube", easy: "178.22", medium: "-", hard: "-", score: "178.22" },
+      { account: "matscube", easy: "178.22", medium: "-", hard: "-", score: "178.22" },
+      { account: "matscube", easy: "178.22", medium: "-", hard: "-", score: "178.22" },
+      { account: "matscube", easy: "178.22", medium: "-", hard: "-", score: "178.22" },
+      { account: "matscube", easy: "178.22", medium: "-", hard: "-", score: "178.22" }
     ]
 
   end

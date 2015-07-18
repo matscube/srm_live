@@ -37,12 +37,15 @@ figcaption {
 }
 svg {
   display: block;
+//  width: 500px;
+//  height: 500px;
+  position: relative;
   height: 100%;
   width: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  overflow: visible;
+//  position: absolute;
+//  top: 0;
+//  left: 0;
+//  overflow: visible;
 }
 circle {
     fill:rgba(0,0,0,0);
